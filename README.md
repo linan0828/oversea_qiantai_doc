@@ -271,6 +271,7 @@
     1. 支付宝撤销订单即使是已完成的订单也会撤销**并退款**.
     2. 微信关闭订单只会关闭未完成的订单.
     3. 取决于支付方案的不同, 某些交易类型可能无法使用.
+    
 
 - Response
 
@@ -288,6 +289,14 @@
         "qrcode": "https://qr.alipay.com/xxxx"  // 预下单时返回的二维码地址
     }
     ```
+    注：公众号支付步骤如下：
+    1.从微信公众平台获取appid,appsecret.
+    2.告知钱方人员支付目录及授权目录
+    3.调用微信接口，获取code，然后获取sub_open_id.
+    （1）https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
+    （2）https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+    4.从钱台获取支付参数
+    5.调用微信H5支付页面
 
 ### 2.2. /trade/v1/close 关闭订单
 
